@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Import Leaflet CSS */
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Refined color palette - soft, modern, professional */
+  --background: 210 20% 98%;
+  --foreground: 224 71% 4%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 224 71% 4%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 71% 4%;
+
+  /* Softer blue primary - more elegant */
+  --primary: 221 83% 53%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 220 14% 96%;
+  --secondary-foreground: 220 9% 46%;
+
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
+
+  --accent: 220 14% 96%;
+  --accent-foreground: 220 9% 46%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 221 83% 53%;
+
+  --radius: 0.625rem;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Custom colors for status */
+  --success: 142 71% 45%;
+  --warning: 38 92% 50%;
+  --info: 199 89% 48%;
+}
+
+.dark {
+  --background: 224 71% 4%;
+  --foreground: 210 20% 98%;
+
+  --card: 224 71% 7%;
+  --card-foreground: 210 20% 98%;
+
+  --popover: 224 71% 7%;
+  --popover-foreground: 210 20% 98%;
+
+  --primary: 217 91% 60%;
+  --primary-foreground: 224 71% 4%;
+
+  --secondary: 215 28% 17%;
+  --secondary-foreground: 210 20% 98%;
+
+  --muted: 215 28% 17%;
+  --muted-foreground: 217 10% 64%;
+
+  --accent: 215 28% 17%;
+  --accent-foreground: 210 20% 98%;
+
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 210 20% 98%;
+
+  --border: 215 28% 20%;
+  --input: 215 28% 17%;
+  --ring: 217 91% 60%;
+}
+
+/* Dark mode specific overrides */
+.dark .bg-emerald-50 {
+  background-color: hsl(142 76% 15% / 0.3);
+}
+.dark .text-emerald-700,
+.dark .text-emerald-600 {
+  color: hsl(142 71% 55%);
+}
+.dark .border-emerald-200\/50 {
+  border-color: hsl(142 76% 25% / 0.3);
+}
+
+.dark .bg-amber-50 {
+  background-color: hsl(38 92% 15% / 0.3);
+}
+.dark .text-amber-700,
+.dark .text-amber-600 {
+  color: hsl(38 92% 60%);
+}
+.dark .border-amber-200\/50 {
+  border-color: hsl(38 92% 25% / 0.3);
+}
+
+.dark .bg-sky-50 {
+  background-color: hsl(199 89% 15% / 0.3);
+}
+.dark .text-sky-700,
+.dark .text-sky-600 {
+  color: hsl(199 89% 58%);
+}
+.dark .border-sky-200\/50 {
+  border-color: hsl(199 89% 25% / 0.3);
+}
+
+.dark .bg-indigo-500\/10 {
+  background-color: hsl(239 84% 40% / 0.2);
+}
+.dark .text-indigo-400 {
+  color: hsl(239 84% 67%);
+}
+
+.dark .glass {
+  @apply bg-card/80 backdrop-blur-sm;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    letter-spacing: -0.011em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+
+  h3 {
+    @apply text-lg;
+  }
+}
+
+@layer components {
+  /* Refined card styles */
+  .card-elevated {
+    @apply bg-card rounded-xl border border-border/50 shadow-sm;
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.02),
+      0 1px 2px -1px rgb(0 0 0 / 0.02);
+  }
+
+  .card-elevated:hover {
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.05),
+      0 2px 4px -2px rgb(0 0 0 / 0.03);
+  }
+
+  /* Stat card - minimal and clean */
+  .stat-card {
+    @apply bg-card rounded-xl p-5 border border-border/40;
+  }
+
+  .stat-value {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+
+  .stat-label {
+    @apply text-sm text-muted-foreground font-medium;
+  }
+
+  /* Subtle section headers */
+  .section-header {
+    @apply text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4;
+  }
+
+  /* Refined badge styles */
+  .badge-success {
+    @apply bg-emerald-50 text-emerald-700 border-emerald-200/50;
+  }
+
+  .badge-warning {
+    @apply bg-amber-50 text-amber-700 border-amber-200/50;
+  }
+
+  .badge-info {
+    @apply bg-sky-50 text-sky-700 border-sky-200/50;
+  }
+
+  /* Soft icon containers */
+  .icon-container {
+    @apply w-10 h-10 rounded-lg flex items-center justify-center;
+  }
+
+  .icon-container-primary {
+    @apply bg-primary/10 text-primary;
+  }
+
+  .icon-container-success {
+    @apply bg-emerald-500/10 text-emerald-600;
+  }
+
+  .icon-container-warning {
+    @apply bg-amber-500/10 text-amber-600;
+  }
+
+  .icon-container-muted {
+    @apply bg-muted text-muted-foreground;
+  }
+
+  /* Leaflet map styles */
+  .leaflet-container {
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border-radius: var(--radius);
+  }
+
+  .leaflet-popup-content-wrapper {
+    @apply rounded-lg shadow-lg border border-border/50;
+  }
+
+  .leaflet-popup-content {
+    @apply m-0 p-3;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-200 ease-out;
+  }
+
+  /* Data table refinements */
+  .data-table {
+    @apply w-full;
+  }
+
+  .data-table th {
+    @apply text-xs font-medium text-muted-foreground uppercase tracking-wider py-3 px-4 text-left bg-muted/30;
+  }
+
+  .data-table td {
+    @apply py-3 px-4 text-sm;
+  }
+
+  .data-table tr {
+    @apply border-b border-border/50 last:border-0;
+  }
+
+  .data-table tbody tr:hover {
+    @apply bg-muted/30;
+  }
+
+  /* Empty state styling */
+  .empty-state {
+    @apply flex flex-col items-center justify-center py-12 px-4 text-center;
+  }
+
+  .empty-state-icon {
+    @apply w-12 h-12 text-muted-foreground/30 mb-4;
+  }
+
+  .empty-state-title {
+    @apply text-base font-medium text-foreground mb-1;
+  }
+
+  .empty-state-description {
+    @apply text-sm text-muted-foreground max-w-sm;
+  }
+
+  /* Refined scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/30;
+  }
+}
+
+@layer utilities {
+  /* Gradient backgrounds */
+  .gradient-subtle {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(220 14% 96%) 100%);
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-sm;
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent;
+  }
+}
