@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { insertUserSchema, insertVehicleSchema, users, vehicles } from './schema';
 
 // API Base URL - always use Render backend directly
-const API_BASE = 'https://fleetpulse-latest.onrender.com';
+const API_BASE = 'https://fleetpulse-latest-moxp.onrender.com';
 
 // Shared Error Schemas
 export const errorSchemas = {
